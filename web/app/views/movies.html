@@ -1,0 +1,9 @@
+<!-- Listataan leffat tietokannasta -->
+<div id="LeffaLista">
+    <p>Leffalista:</p>
+    <div ng-repeat="movie in movies">
+        <h2>{{movie.name}} ({{movie.released}})</h2>
+        <p>{{movie.director}}</p>
+        <p>{{movie.description}}</p>
+    </div>
+</div>
