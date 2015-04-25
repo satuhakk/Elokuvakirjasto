@@ -5,7 +5,7 @@ describe('Show movie', function(){
 
   	beforeEach(function(){
   		// Lisää moduulisi nimi tähän
-    	module('MyAwesomeModule');
+    	module('MyMovieApp');
 
     	FirebaseServiceMock = (function(){
 			return {

@@ -22,7 +22,7 @@ describe('Add movie', function () {
                     released: '1994'
                 },
                 {
-                    description: 'Kissojen ja hiirten välinen taisto jatkuu Kissat Ja Hiiret -elokuvan viidennessä jatko-osassa.',
+                    description: 'Kissojen ja hiirten välinen taisto jatkuu Kissat Ja Hiiret -elokuvan viidennessä huikeassa jatko-osassa.',
                     director: 'Filu Lee',
                     name: 'Kissat vs. Hiiret 6',
                     released: '2015'
@@ -82,6 +82,13 @@ describe('Add movie', function () {
      * not.toBeCalled-oletusta (muista not-negaatio!).
      */
     it('should not be able to add a movie if its name, director, release date or description is empty', function () {
-        expect(true).toBe(false);
+        expect(scope.movies.length).toBe(3);
+        scope.newName = 'Tihulainen';
+        scope.newDirector = 'Janni Jennijönni';
+        scope.newReleased = '2002';
+        scope.newDescription = '';
+        scope.addMovie();
+        expect(scope.movies.length).toBe(3);
+        expect(FirebaseServiceMock.addMovie).not.toHaveBeenCalled();
     });
 });
