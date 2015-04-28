@@ -1,11 +1,40 @@
 <!-- Listataan leffat tietokannasta -->
 <div id="LeffaLista">
     <p>Leffalista:</p>
+    
     <div ng-repeat="movie in movies">
         <h2><a ng-href="#/movies/{{movie.$id}}">{{movie.name}}</a> ({{movie.released}})</h2>
         <p>{{movie.director}}</p>
         <p>{{movie.desc}}</p>
         <button ng-click="removeMovie(movie)">Poista elokuva</button>
-        <p><a ng-href="#/movies/new">Lisää uusi elokuva</a></p>
     </div>
+
+    <p><a ng-href="#/movies/new">Lisää uusi elokuva</a></p>
+    
+    <div id="NameSearchContainer">
+        <h2>Elokuvahaku</h2>
+        <p>
+            <input type="text" ng-model="nameSearch" name="nameSearch" placeholder="Etsi elokuvia nimellä">
+        </p>
+    </div>
+
+    <div id="YearSearchContainer">
+        <p>
+            <input type="text" ng-model="yearSearch" name="yearSearch" placeholder="Etsi elokuvia julkaisuvuodella">
+        </p>        
+        <button ng-click="findMovie()">Hae</button>
+    </div>
+
+    <div>
+        <h3 ng-show="apiMovies.length < 1">Hakusanalla ei löytynyt elokuvia</h3>
+
+        <h3 ng-show="apiMovies.length >= 1"> Haulla löytyi {{apiMovies.length}} <span ng-pluralize count="apiMovies.length" when="{ 'one': 'elokuva', 'other': 'elokuvaa' }"></span>. </h3>
+
+        <ul>
+            <li ng-repeat="apiMovie in apiMovies">
+                <a href="http://www.imdb.com/title/{{apiMovie.imdbID}}">{{apiMovie.Title}}</a> ({{apiMovie.Year}})
+            </li>
+        </ul>
+    </div>
+    
 </div>
