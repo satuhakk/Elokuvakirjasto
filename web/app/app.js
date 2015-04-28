@@ -24,6 +24,6 @@ MyMovieApp.config(function ($routeProvider) {
             });
 });
 
-MyMovieApp.config(['$httpProvider', function($httpProvider) {
-  delete $httpProvider.defaults.headers.common["X-Requested-With"]
-}]);
+MyMovieApp.config(['$httpProvider', function ($httpProvider) {
+        delete $httpProvider.defaults.headers.common["X-Requested-With"]
+    }]);
