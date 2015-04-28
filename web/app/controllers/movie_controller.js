@@ -1,21 +1,21 @@
 MyMovieApp.controller('MovieController', function ($scope, FirebaseService, $location) {
+    
     $scope.movies = FirebaseService.getMovies();
-    $scope.addMovie = function () {
 
-        if ($scope.newName != '' && $scope.newDescription != '' &&
+    $scope.addMovie = function () {
+        if ($scope.newName != '' && $scope.newDesc != '' &&
                 $scope.newDirector != '' && $scope.newReleased != '') {
             FirebaseService.addMovie({
                 name: $scope.newName,
                 director: $scope.newDirector,
                 released: $scope.newReleased,
-                description: $scope.newDescription
+                desc: $scope.newDesc
             })
             $location.path('/movies');
-//            $scope.newName = '';
-//            $scope.newDirector = '';
-//            $scope.newReleased = '';
-//            $scope.newDescription = '';
         }
     }
 
+    $scope.removeMovie = function (movie) {
+        FirebaseService.removeMovie(movie);
+    }
 });

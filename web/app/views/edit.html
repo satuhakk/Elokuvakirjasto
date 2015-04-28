@@ -1,0 +1,42 @@
+<div>
+    <p>Muokkaa elokuvan {{info.name}} tietoja:</p>
+</div>
+<form name="editForm">
+    <div id="NameContainer">
+        <p>Nimi:
+            <input type="text" ng-model="editName" name="editName" required ng-minlength="1">
+        <div ng-show="editForm.editName.$invalid && editForm.editName.$dirty">
+            Elokuvan nimi ei ole validi!
+        </div>
+        </p>
+    </div>
+
+    <div id="DirectorContainer">
+        <p>Ohjaaja:
+            <input type="text" ng-model="editDirector" name="editDirector" required ng-minlength="1" ng-pattern="/^[A-Za-z/ ]+$/">
+        <div ng-show="editForm.editDirector.$invalid && editForm.editDirector.$dirty">
+            Ohjaajan nimi ei ole validi!
+        </div>
+        </p>
+    </div>
+
+    <div id="ReleasedContainer">
+        <p>Julkaisuvuosi:
+            <input type="text" ng-model="editReleased" name="editReleased" required ng-pattern="/^[0-9]{4,}$/">
+        <div ng-show="editForm.editReleased.$invalid && editForm.editReleased.$dirty">
+            Julkaisuvuosi ei ole validi!
+        </div>
+        </p>
+    </div>
+
+    <div id="DescriptionContainer">
+        <p>Kuvaus:
+            <input type="text" ng-model="editDesc" name="editDesc" required ng-minlength="10">
+        <div ng-show="editForm.editDesc.$invalid && editForm.editDesc.$dirty">
+            Elokuvan kuvaus ei ole validi!
+        </div>
+        </p>
+    </div>
+
+    <button ng-click="editMovie()">Tallenna muutokset</button>
+</form>

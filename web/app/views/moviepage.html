@@ -1,0 +1,8 @@
+<!-- Yksittäisen elokuvan esittelysivu -->
+<div id="Esittelysivu">
+    <h2>{{info.name}}</h2>
+    <p>Ohjaaja: {{info.director}}</p>
+    <p>Julkaisuvuosi: {{info.released}}</p>
+    <p>Kuvaus: {{info.desc}}</p>
+    <a ng-href="#/movies/{{info.$id}}/edit">Muokkaa elokuvan tietoja</a>
+</div>

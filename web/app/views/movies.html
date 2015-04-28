@@ -2,8 +2,10 @@
 <div id="LeffaLista">
     <p>Leffalista:</p>
     <div ng-repeat="movie in movies">
-        <h2>{{movie.name}} ({{movie.released}})</h2>
+        <h2><a ng-href="#/movies/{{movie.$id}}">{{movie.name}}</a> ({{movie.released}})</h2>
         <p>{{movie.director}}</p>
-        <p>{{movie.description}}</p>
+        <p>{{movie.desc}}</p>
+        <button ng-click="removeMovie(movie)">Poista elokuva</button>
+        <p><a ng-href="#/movies/new">Lisää uusi elokuva</a></p>
     </div>
 </div>

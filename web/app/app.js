@@ -14,4 +14,12 @@ MyMovieApp.config(function ($routeProvider) {
                 controller: 'MovieController',
                 templateUrl: 'app/views/movieform.html'
             })
+            .when('/movies/:key', {
+                controller: 'ShowMovieController',
+                templateUrl: 'app/views/moviepage.html'
+            })
+            .when('/movies/:key/edit', {
+                controller: 'EditingController',
+                templateUrl: 'app/views/edit.html'
+            });
 });

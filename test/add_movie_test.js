@@ -1,6 +1,6 @@
 describe('Add movie', function () {
     var controller, scope;
-
+    var movies;
     var FirebaseServiceMock;
 
     beforeEach(function () {
@@ -8,21 +8,21 @@ describe('Add movie', function () {
         module('MyMovieApp');
 
         FirebaseServiceMock = (function () {
-            var movies = [
+            movies = [
                 {
-                    description: 'Tarina miehestä joka ei löytänyt kotiin baari-illan päätteeksi.',
+                    desc: 'Tarina miehestä joka ei löytänyt kotiin baari-illan päätteeksi.',
                     director: 'Se harmaantunut mies',
                     name: 'Left Outside Alone',
                     released: '2010'
                 },
                 {
-                    description: 'Mitä tehdä kun tytär haluaa Ultimate Fight Championiksi?',
+                    desc: 'Mitä tehdä kun tytär haluaa Ultimate Fight Championiksi?',
                     director: 'Jåhan Kröger',
                     name: 'Not A Pretty Face',
                     released: '1994'
                 },
                 {
-                    description: 'Kissojen ja hiirten välinen taisto jatkuu Kissat Ja Hiiret -elokuvan viidennessä huikeassa jatko-osassa.',
+                    desc: 'Kissojen ja hiirten välinen taisto jatkuu Kissat Ja Hiiret -elokuvan viidennessä huikeassa jatko-osassa.',
                     director: 'Filu Lee',
                     name: 'Kissat vs. Hiiret 6',
                     released: '2015'
@@ -41,7 +41,6 @@ describe('Add movie', function () {
         // Lisää vakoilijat
         // spyOn(FirebaseServiceMock, 'jokuFunktio').and.callThrough();
         spyOn(FirebaseServiceMock, 'addMovie').and.callThrough();
-        spyOn(FirebaseServiceMock, 'getMovies').and.callThrough();
 
         // Injektoi toteuttamasi kontrolleri tähän
         inject(function ($controller, $rootScope) {
@@ -65,16 +64,21 @@ describe('Add movie', function () {
      * toBeCalled-oletusta.
      */
     it('should be able to add a movie by its name, director, release date and description', function () {
-        expect(scope.movies.length).toBe(3);
-        scope.newName = 'Tihulainen';
-        scope.newDirector = 'Janni Jennijönni';
-        scope.newReleased = '2002';
-        scope.newDescription = 'Rotat valtaavat Väinö Auerin kadun naapuruston. HOAS lähtee selvittämään tuholaisongelmaa.';
+        expect(FirebaseServiceMock.getMovies().length).toBe(3);
+//        var movie = {
+//            name: 'Tihulainen',
+//            director: 'Janni Jennijönni',
+//            released: '2002',
+//            description: 'Rotat valtaavat Väinö Auerin kadun naapuruston. HOAS lähtee selvittämään tuholaisongelmaa.'
+//        }
+        scope.newName = 'Jepa';
+        scope.newDirector = 'Joopa joo';
+        scope.newReleased = '2000';
+        scope.newDesc = 'Kuvaustekstia diibadaaba';
         scope.addMovie();
-        expect(scope.movies.length).toBe(4);
+        expect(FirebaseServiceMock.getMovies().length).toBe(4);
         expect(FirebaseServiceMock.addMovie).toHaveBeenCalled();
     });
-
     /*	
      * Testaa, ettei käyttäjä pysty lisäämään elokuvaa väärillä tiedoilla.
      * Muista myös tarkistaa, että Firebasen kanssa keskustelevasta palvelusta
@@ -82,13 +86,19 @@ describe('Add movie', function () {
      * not.toBeCalled-oletusta (muista not-negaatio!).
      */
     it('should not be able to add a movie if its name, director, release date or description is empty', function () {
-        expect(scope.movies.length).toBe(3);
-        scope.newName = 'Tihulainen';
-        scope.newDirector = 'Janni Jennijönni';
-        scope.newReleased = '2002';
-        scope.newDescription = '';
+        expect(FirebaseServiceMock.getMovies().length).toBe(3);
+//        var movie = {
+//            name: 'Tihulainen',
+//            director: 'Janni Jennijönni',
+//            released: '2002',
+//            description: 'Rotat valtaavat Väinö Auerin kadun naapuruston. HOAS lähtee selvittämään tuholaisongelmaa.'
+//        }
+        scope.newName = 'Jepa';
+        scope.newDirector = 'Joopa joo';
+        scope.newReleased = '2000';
+        scope.newDesc = '';
         scope.addMovie();
-        expect(scope.movies.length).toBe(3);
+        expect(FirebaseServiceMock.getMovies().length).toBe(3);
         expect(FirebaseServiceMock.addMovie).not.toHaveBeenCalled();
     });
 });

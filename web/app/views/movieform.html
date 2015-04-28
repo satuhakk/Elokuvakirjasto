@@ -29,8 +29,8 @@
 
     <div id="DescriptionContainer">
         <p>Kuvaus:
-            <textarea type="text" ng-model="newDescription" name="newDescription" required ng-minlength="10"></textarea>
-        <div ng-show="movieForm.newDescription.$invalid && movieForm.newDescription.$dirty">
+            <input type="text" ng-model="newDesc" name="newDesc" required ng-minlength="10">
+        <div ng-show="movieForm.newDesc.$invalid && movieForm.newDesc.$dirty">
             Elokuvan kuvaus ei ole validi!
         </div>
         </p>
